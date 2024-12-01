@@ -7,7 +7,7 @@ const connectDB = async () => {
     "mongodb+srv://nandiankan242:ankan1234@ankan.esoce.mongodb.net/foodmern?"
   );
 
-  console.log("the database is connected");
+  console.log("the database is connected...");
 };
 connectDB();
 
