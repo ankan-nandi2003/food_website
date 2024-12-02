@@ -5,9 +5,9 @@ const mongoose = require("mongoose");
 const port = 5000;
 app.use(express.json());
 
-const userRoutes = require("./Routes/userRoutes");
+const {userRouter} = require('./Routes/userRoutes')
 
-app.use("/api/users", userRoutes);
+app.use("/api/users", userRouter);
 
 async function main() {
   await mongoose.connect(
