@@ -1,22 +1,21 @@
+require("dotenv").config();
 const express = require("express");
-const { default: mongoose } = require("mongoose");
 const app = express();
+const mongoose = require("mongoose");
 const port = 5000;
-const connectDB = async () => {
-  await mongoose.connect(
-    "mongodb+srv://nandiankan242:ankan1234@ankan.esoce.mongodb.net/foodmern?"
-  );
-
-  console.log("the database is connected...");
-};
-connectDB();
-
-app.get("/", (req, res) => {
-  res.send("Hello World!");
-});
 app.use(express.json());
-app.use("/api", require("./Routes/CreateUser"));
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
-});
+const userRoutes = require("./Routes/userRoutes");
+
+app.use("/api/users", userRoutes);
+
+async function main() {
+  await mongoose.connect(
+    process.env.MONGO ||
+      "mongodb+srv://nandiankan242:ankan1234@ankan.esoce.mongodb.net/foodmern"
+  );
+  app.listen(port, () => {
+    console.log("server connected");
+  });
+}
+main();
